@@ -1,17 +1,30 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');//自动生成index文件
-//const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');//自动生成 html文件
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const webpack = require('webpack');
+
 module.exports = {
   entry: './src/app.js',
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
+      title:"hello react",
       filename:"index.html", 
-      templete:'src/index.html' 
-    })
+      template:'src/index.html' 
+    }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ],
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
+  },
+  devtool: 'inline-source-map', //解释说明
+  devServer:{
+    open:true, //自动打开浏览器
+    port:3000,
+    hot:true
   },
   module: {
     rules: [
@@ -63,9 +76,5 @@ module.exports = {
         ]
       }
     ]
-  },
-  devServer:{
-    open:true, //自动打开浏览器
-    port:8082,
   }
 };
