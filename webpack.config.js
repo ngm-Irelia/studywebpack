@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -6,6 +7,13 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
+  plugins: [
+    new HtmlWebpackPlugin({  // Also generate a test.html
+      title:"对对对",
+      filename: 'test.html',
+      template: 'src/index.html'
+    })
+  ],
   module: {
     rules: [
       {
