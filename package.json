@@ -13,7 +13,7 @@
     "buildprod": "webpack --config webpack.prod.js"
   },
   "dependencies": {
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "uglifyjs-webpack-plugin": "^2.1.3",
